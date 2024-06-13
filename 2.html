@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<head>
+    <title>評論區</title>
+    <style>
+        body{
+            background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('logo.jpg'); /* 替换为你的图片链接 */
+            background-repeat: repeat-x; /* 水平重复背景图片 */
+            background-size: contain; /* 确保图片完整显示 */
+            height: 120px; /* 你可以根据需要调整高度 */
+            background-repeat: repeat; /* 背景图片在水平和垂直方向上都重复 */
+            border-radius: 50px;
+        }
+        .salmon{
+            background-color: white;
+            width: 1500px;
+            height: 60px;
+        }
+        .comment-system {
+            width: 50%;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 50px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2, h3 {
+            text-align: center;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            margin-top: 10px;
+        }
+        
+        input, textarea {
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+        }
+        
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        #commentsContainer {
+            margin-top: 20px;
+        }
+        
+        #commentsList {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .comment {
+            background: #f9f9f9;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+        }
+        #homeButton {
+            background-color: #28a745;
+            margin-top: 20px;
+            margin-left: 925px;
+        }
+        
+        #homeButton:hover {
+            background-color: #218838;
+        }
+        h1{
+            color: #000;
+            font-size: 40px;
+            text-align: center;
+            font-family: 微軟正黑體;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        document.getElementById('commentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+        
+            const name = document.getElementById('name').value;
+            const comment = document.getElementById('comment').value;
+        
+            if (name && comment) {
+                addComment(name, comment);
+                document.getElementById('name').value = '';
+                document.getElementById('comment').value = '';
+            }
+        });
+        
+        function addComment(name, comment) {
+            const commentList = document.getElementById('commentsList');
+            const commentElement = document.createElement('li');
+            commentElement.className = 'comment';
+            commentElement.innerHTML = `<strong>${name}</strong><p>${comment}</p>`;
+            commentList.appendChild(commentElement);
+        }
+    </script>
+</head>
+<body>
+    <center><div class="salmon"><a href="index.html" style="text-decoration:solid"><h1>|廢物官方網站|</h1></a></div></center>
+    <div class="comment-system">
+        <h2>留言評論</h2>
+        <form id="commentForm">
+            <label for="name">名字:</label>
+            <input type="text" id="name" required>
+            <label for="comment">評論:</label>
+            <textarea id="comment" required></textarea>
+            <button type="submit">提交</button>
+        </form>
+        <div id="commentsContainer">
+            <h3>評論:</h3>
+            <ul id="commentsList"></ul>
+        </div>
+    </div>
+    <a href="index.html"><button id="homeButton"><h2>回首頁</h2></button></a>
+</body>
